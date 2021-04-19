@@ -51,7 +51,7 @@ pipeline {
         stage('Publication du binaire') {
 
           steps {
-            sh "curl -u admin:Shaymin122 --upload-file target/*.war 'http://84.39.43.46:8081/repository/depot_test/rondoudou${BUILD_NUMBER}.war'"        
+            sh "curl -u admin:formation-2021 --upload-file target/*.war 'http://84.39.43.46:8081/repository/depot_test/rondoudou${BUILD_NUMBER}.war'"        
           }
 
         }
@@ -71,7 +71,7 @@ pipeline {
         stage('Téléchargement du binaire') {
           
           steps {
-            sh "wget -P /home/jenkins/tomcat/webapps http://84.39.43.46:8081/repository/depot_test/rondoudou${BUILD_NUMBER}.war"
+            sh "wget -P /home/jenkins/tomcat/webapps http://10.10.20.31:8081:8081/repository/depot_test/rondoudou${BUILD_NUMBER}.war"
             sh "mv /home/jenkins/tomcat/webapps/rondoudou${BUILD_NUMBER}.war /home/jenkins/tomcat/webapps/rondoudou.war"
           }
  
@@ -89,8 +89,8 @@ pipeline {
   
           steps {
     
-            sh "curl -u admin:Shaymin122 --upload-file /home/jenkins/tomcat/webapps/rondoudou.war 'http://84.39.43.46:8081/repository/hello_fiable/rondoudou_fiable${BUILD_NUMBER}.war'"
-            sh "curl -u admin:Shaymin122 --upload-file /home/jenkins/tomcat/webapps/rondoudou.war 'http://84.39.43.46:8081/repository/hello_livrable/dernier_rondoudou_fiable.war'"
+            sh "curl -u admin:formation-2021 --upload-file /home/jenkins/tomcat/webapps/rondoudou.war 'http://10.10.20.31:8081/repository/hello_fiable/rondoudou_fiable${BUILD_NUMBER}.war'"
+            sh "curl -u admin:formation-2021 --upload-file /home/jenkins/tomcat/webapps/rondoudou.war 'http://10.10.20.31:8081/repository/hello_livrable/dernier_rondoudou_fiable.war'"
   
           }
   
@@ -111,7 +111,7 @@ pipeline {
         stage('Téléchargement du binaire') {
           
           steps {
-            sh 'wget -P /home/jenkins/docker/tomcat_app http://84.39.43.46:8081/repository/hello_livrable/dernier_rondoudou_fiable.war'
+            sh 'wget -P /home/jenkins/docker/tomcat_app http://10.10.20.31:80811/repository/hello_livrable/dernier_rondoudou_fiable.war'
             sh 'mv /home/jenkins/docker/tomcat_app/dernier_rondoudou_fiable.war /home/jenkins/docker/tomcat_app/rondoudou.war'
           }
           
@@ -130,7 +130,7 @@ pipeline {
           steps {
             sh "docker tag tomcat_app reeban/tomcat_app:${BUILD_NUMBER}"
             sh 'docker tag tomcat_app reeban/tomcat_app'
-            sh 'docker login -u reeban -p Shaymin122'
+            sh 'docker login -u reeban -p formation-2021'
             sh "docker push reeban/tomcat_app:${BUILD_NUMBER}"
             sh 'docker push reeban/tomcat_app'
           }

@@ -4,7 +4,7 @@ RUN apt-get install -y openjdk-8-jdk git curl
 
 #installation manuelle de maven
 
-RUN wgethttps://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
+RUN wget https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
 RUN mv apache-maven-3.5.4-bin.tar.gz /opt
 RUN tar -xvf /opt/apache-maven-3.5.4-bin;tar.gz -C /opt
 RUN mv /opt/apache-maven-3.5.4 /opt/apache-maven
