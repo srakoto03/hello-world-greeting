@@ -5,31 +5,22 @@
   stages {
     
     stage('Compilation et tests') {
-
       agent {
         label 'agent_java'
       }
-
       stages {
-  
         stage('Test unitaire & publication') {
-    
           steps {
             sh 'mvn test'
-          }
-      
-          post {
-      
+          }    
+          post { 
             always {        
               junit 'target/surefire-reports/*.xml'
             }
-        
-          }
-      
+          }   
         }
 
         stage('Analyse statique') {
-      
           steps {
         
             withSonarQubeEnv('SonarQube') {
@@ -59,19 +50,10 @@
       }
   
     }
-    stage('Creation de l\'image') {  
-      agent {
-        label 'agent_docker'
-      }
-      
-      stages {
-         stage('Compilation de l\'image') {
-      
+    stage('Creation de l\'image') { 
           steps {
             sh 'docker build -t tomcat_app /home/jenkins/docker/tomcat_app'
-          }  
-        }
-      }
+          }        
     }
   }
 }
