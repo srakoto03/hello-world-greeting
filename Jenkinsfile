@@ -1,6 +1,12 @@
- pipeline {   
-    
+pipeline {   
+    agent{}
+
     stages {
+
+      node {
+          checkout scm 
+    /* .. snip .. */
+      }
       stage('Test unitaire') {
               steps {
                 sh 'mvn test'
@@ -22,7 +28,7 @@
                 
       stage('Publication du binaire') {
               steps {
-                sh "curl -u admin:formation-2021 --upload-file target/*.war 'http://10.10.20.31:8081/repository/depot_test/rondoudou${BUILD_NUMBER}.war'"        
+                sh "curl -u admin:formation-2021 --upload-file target/*.war 'http://10.10.20.31:8081/repository/depot_test/tes-maven${BUILD_NUMBER}.war'"        
               }
       }
     }
