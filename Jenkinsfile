@@ -1,4 +1,4 @@
-pipeline {
+ pipeline {
   
   agent none
   
@@ -51,7 +51,7 @@ pipeline {
         stage('Publication du binaire') {
 
           steps {
-            sh "curl -u admin:formation-2021 --upload-file target/*.war 'http://84.39.43.46:8081/repository/depot_test/rondoudou${BUILD_NUMBER}.war'"        
+            sh "curl -u admin:formation-2021 --upload-file target/*.war 'http://10.10.20.31:8081/repository/depot_test/rondoudou${BUILD_NUMBER}.war'"        
           }
 
         }
@@ -59,43 +59,17 @@ pipeline {
       }
   
     }
-    
-     
-        
-        
-        
-      }
-      
-    }
-    
-    stage('Creation de l\'image') {
-      
+    stage('Creation de l\'image') {  
       agent {
         label 'agent_docker'
       }
       
       stages {
-        
-       
-          
-        stage('Compilation de l\'image') {
+         stage('Compilation de l\'image') {
       
           steps {
             sh 'docker build -t tomcat_app /home/jenkins/docker/tomcat_app'
-          }
-          
-        }
-        
-        stage('Stockage de l\'image') {
-              
-          steps {
-            sh "docker tag tomcat_app reeban/tomcat_app:${BUILD_NUMBER}"
-            sh 'docker tag tomcat_app reeban/tomcat_app'
-            sh 'docker login -u reeban -p formation-2021'
-            sh "docker push reeban/tomcat_app:${BUILD_NUMBER}"
-            sh 'docker push reeban/tomcat_app'
-          }
-         
+          }  
         }
       }
     }
