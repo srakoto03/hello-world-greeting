@@ -5,10 +5,7 @@
     }
     
     stages {
-    
-        stage('Test unitaire') {    
-        
-        stage('Test unitaire & publication') {
+      stage('Test unitaire') {
               steps {
                 sh 'mvn test'
               }    
