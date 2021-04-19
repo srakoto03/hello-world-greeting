@@ -1,10 +1,10 @@
 pipeline {   
-    stages {
- 
+
     agent {
         label 'agent_java'
       }
-      stage('Test unitaire') {
+    stages {
+     stage('Test unitaire') {
               steps {
                 sh 'mvn test'
               }    
@@ -14,8 +14,6 @@ pipeline {
                 }
               }   
         }
-         
-
         stage('Compilation') {
               steps {  
                 sh 'mvn -B -DskipTests clean package'
