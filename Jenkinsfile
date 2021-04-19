@@ -1,8 +1,4 @@
- pipeline {
-  
-    agent {
-      label 'agent_java'
-    }
+ pipeline {   
     
     stages {
       stage('Test unitaire') {
