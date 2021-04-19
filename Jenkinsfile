@@ -60,41 +60,9 @@ pipeline {
   
     }
     
-    stage('Tests de déploiement') {
-      
-      agent {
-        label 'agent_tomcat'
-      }
-      
-      stages {
+     
         
-        stage('Téléchargement du binaire') {
-          
-          steps {
-            sh "wget -P /home/jenkins/tomcat/webapps http://10.10.20.31:8081:8081/repository/depot_test/rondoudou${BUILD_NUMBER}.war"
-            sh "mv /home/jenkins/tomcat/webapps/rondoudou${BUILD_NUMBER}.war /home/jenkins/tomcat/webapps/rondoudou.war"
-          }
- 
-        }
         
-        stage('Test de performance') {
-          
-          steps {
-            sh '/home/jenkins/apache-jmeter/bin/jmeter.sh -n -t ./jmeter.jmx -l /home/jenkins/test_report.jtl'
-          }
-         
-        }
-        
-        stage ('Validation de l\'application') {
-  
-          steps {
-    
-            sh "curl -u admin:formation-2021 --upload-file /home/jenkins/tomcat/webapps/rondoudou.war 'http://10.10.20.31:8081/repository/hello_fiable/rondoudou_fiable${BUILD_NUMBER}.war'"
-            sh "curl -u admin:formation-2021 --upload-file /home/jenkins/tomcat/webapps/rondoudou.war 'http://10.10.20.31:8081/repository/hello_livrable/dernier_rondoudou_fiable.war'"
-  
-          }
-  
-        }
         
       }
       
@@ -108,14 +76,7 @@ pipeline {
       
       stages {
         
-        stage('Téléchargement du binaire') {
-          
-          steps {
-            sh 'wget -P /home/jenkins/docker/tomcat_app http://10.10.20.31:80811/repository/hello_livrable/dernier_rondoudou_fiable.war'
-            sh 'mv /home/jenkins/docker/tomcat_app/dernier_rondoudou_fiable.war /home/jenkins/docker/tomcat_app/rondoudou.war'
-          }
-          
-        }
+       
           
         stage('Compilation de l\'image') {
       
