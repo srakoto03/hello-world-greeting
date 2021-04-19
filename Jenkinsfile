@@ -1,7 +1,9 @@
 pipeline {   
-    
     stages {
  
+    agent {
+        label 'agent_java'
+      }
       stage('Test unitaire') {
               steps {
                 sh 'mvn test'
