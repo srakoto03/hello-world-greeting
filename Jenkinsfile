@@ -1,12 +1,7 @@
 pipeline {   
-    agent{}
-
+    agent any
     stages {
-
-      node {
-          checkout scm 
-    /* .. snip .. */
-      }
+ 
       stage('Test unitaire') {
               steps {
                 sh 'mvn test'
