@@ -37,13 +37,13 @@ pipeline {
 
           stage('test de performance') { 
                 steps { 
-                     sh '/home/jenkins/apache-jmeter-5.0/bin/jmeter.sh -n -t ./test.jmx -l /home/jenkins/test_report.jtl' 
+                     sh '/home/jenkins/apache-jmeter-5.0/bin/jmeter.sh -n -t ./jmeter.jmx -l /home/jenkins/test_report.jtl' 
                 }   
           }
 
          stage ('Validation de l\'application') {  
                 steps { 
-                    sh "curl -u admin:{admin} --upload-file /home/jenkins/tomcat/webapps/test.war 'http://{10.10.20.31}:8081/repository/depot_test/app_fiable${BUILD_NUMBER}.war'" 
+                    sh "curl -u admin:formation-2021 --upload-file /home/jenkins/tomcat/webapps/test.war 'http://{10.10.20.31}:8081/repository/depot_test/app_fiable${BUILD_NUMBER}.war'" 
                 } 
          }
     }
