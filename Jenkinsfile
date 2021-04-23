@@ -46,11 +46,6 @@ pipeline {
                 steps { 
                     sh "curl -u admin:formation-2021 --upload-file /home/jenkins/tomcat/webapps/test.war 'http://{10.10.20.31}:8081/repository/depot_test/app_fiable${BUILD_NUMBER}.war'" 
                 } 
-         }
-        
- 
- }
-
-        
+         }   
     }
 }
