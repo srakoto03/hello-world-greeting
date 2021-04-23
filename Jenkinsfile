@@ -43,9 +43,8 @@ pipeline {
 
          stage ('Validation de l\'application') {  
                 steps { 
-                    sh "curl -u admin:{MOT_DE_PASSE} --uploadfile /home/jenkins/tomcat/webapps/app.war 
-                      'http://{ADRESSE_IP_SERVEUR_NEXUS}:8081/repository/hello_fiable/app_fiable$
-                    {BUILD_NUMBER}.war'" 
+                    sh "curl -u admin:{admin} --upload-file /home/jenkins/tomcat/webapps/app.war 
+                      'http://{10.10.20.31}:8081/repository/depot_test/app_fiable${BUILD_NUMBER}.war'" 
                 } 
          }
  
