@@ -40,7 +40,7 @@ pipeline {
              steps { 
                 
                  sh '/home/jenkins/apache-jmeter-5.4.1/bin/jmeter.sh -n -t  $WORKSPACE/pt/hello_test.jmx -l /home/jenkins/test_report.jtl' 
-                 sh '/home/jenkins/workspace/hello_world_master@tmp/durable-${BUILD_NUMBER}/script.sh: 1: /home/jenkins/workspace/hello_world_master@tmp/durable-${BUILD_NUMBER}/script.sh: /home/jenkins/apache-jmeter-5.4.1/bin/jmeter.sh
+                 sh '/home/jenkins/workspace/hello_world_master@tmp/durable-${BUILD_NUMBER}/script.sh: 1: /home/jenkins/workspace/hello_world_master@tmp/durable-${BUILD_NUMBER}/script.sh: /home/jenkins/apache-jmeter-5.4.1/bin/jmeter.sh'
              }    
          } 
           
