@@ -38,7 +38,7 @@ pipeline {
          stage('Test de performance') { 
  
              steps { 
-                 sh '/home/jenkins/apache-jmeter-5.4.1/bin/jmeter.sh -n -t ./hello_test.jmx -l /home/jenkins/test_report.jtl' 
+                 sh '/home/jenkins/apache-jmeter-5.4.1/bin/jmeter.sh -n -t /home/jenkins/apache-jmeter-5.4.1/bin/hello_test.jmx -l /home/jenkins/test_report.jtl' 
              }    
          } 
           
